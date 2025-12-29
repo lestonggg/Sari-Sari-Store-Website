@@ -37,6 +37,8 @@ In VS Code, press **Ctrl + Shift + `** or go to the top menu: **... (Triple Dots
 
 ### Step 7: Activate the Virtual Environment
 
+**If you DON'T have a .venv folder yet:** Type this command to create your "private room" first: `python -m venv .venv`
+
 Type this command to start your isolated Python environment:
 `.venv\Scripts\activate`
 
