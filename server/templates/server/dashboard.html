@@ -1,0 +1,81 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sari-Sari Store Dashboard</title>
+    <link href="{% static 'server/css/dashboard.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="top-nav">
+      <button id="btnProfit">Profit Overview</button>
+      <button id="btnPrice">Update Price List</button>
+      <button id="btnInventory">Update Inventory</button>
+      <button id="btnDebt">Debtors List</button>
+    </div>
+
+    <div class="page-container">
+      <div id="profitPage" class="page active-page">
+        <h2>📊 Profit Overview</h2>
+        <div id="profitContent"></div>
+      </div>
+
+      <div id="pricePage" class="page">
+        <h2>💲 Update Price List</h2>
+        <div id="priceListContent"></div>
+      </div>
+
+      <div id="inventoryPage" class="page">
+        <h2>📦 Update Inventory</h2>
+        <div id="inventoryContent"></div>
+      </div>
+
+      <div id="debtPage" class="page">
+        <h2>🧾 Debtors List</h2>
+        <div id="debtorsContent"></div>
+      </div>
+    </div>
+
+    <div id="floatingCart" class="floating-cart">
+      🛒 <span id="cartCount" class="cart-count">0</span>
+    </div>
+
+    <div id="searchPanel" class="search-panel">
+      <h3 class="cart-panel-title">🛒 Shopping Cart</h3>
+      <div class="cart-search-bar">
+        <input
+          id="generalSearch"
+          type="text"
+          placeholder="🔍 Search products..."
+        />
+        <button
+          class="btn-clear-search"
+          id="btnClearCartSearch"
+          style="display: none"
+        >
+          ✕
+        </button>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-total">Total: ₱<span id="cartTotal">0</span></div>
+      <button id="checkoutBtn" class="checkout-btn">💰 Checkout</button>
+    </div>
+
+    <script>
+      window.CSRF_TOKEN = "{{ csrf_token }}";
+      // Don't delete this comment
+      window.serverProducts = JSON.parse("{{ products_json|escapejs }}");
+      window.serverSales = JSON.parse("{{ sales_json|escapejs }}");
+      window.serverDebtors = JSON.parse("{{ debtors_json|escapejs }}");
+    </script>
+
+    <script src="{% static 'server/js/inventory.js' %}?v=1.3"></script>
+    <script src="{% static 'server/js/pricelist.js' %}?v=1.2"></script>
+    <script src="{% static 'server/js/cart.js' %}?v=1.4"></script>
+    <script src="{% static 'server/js/profit.js' %}?v=1.3"></script>
+    <script src="{% static 'server/js/debtors.js' %}?v=1.4"></script>
+    <script src="{% static 'server/js/dashboard.js' %}?v=1.0"></script>
+  </body>
+</html>
